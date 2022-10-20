@@ -1,0 +1,121 @@
+<!-- Navbar Transparent -->
+<nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent ">
+  <div class="container">
+    <a class="navbar-brand text-white font-weight-bolder" href="/" rel="tooltip" title="Trang Chủ Quản Lý Học Sinh"
+      data-placement="bottom" style="user-select: none;">
+      QUẢN LÝ HỌC SINH
+    </a>
+    <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation"
+      aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon mt-2">
+        <span class="navbar-toggler-bar bar1"></span>
+        <span class="navbar-toggler-bar bar2"></span>
+        <span class="navbar-toggler-bar bar3"></span>
+      </span>
+    </button>
+    <div class="collapse navbar-collapse w-100 pt-3 pb-2 py-lg-0 ms-lg-12 ps-lg-5" id="navigation">
+      <ul class="navbar-nav navbar-nav-hover ms-auto">
+        {% if current_user.is_authenticated %}
+
+        <!-- nav for staff -->
+        {% if current_user.user_role == UserRole.STAFF or current_user.user_role == UserRole.ADMIN %}
+        <li class="nav-item dropdown dropdown-hover mx-2">
+          <a class="nav-link ps-2 d-flex cursor-pointer align-items-center font-weight-bold text-capitalize"
+            id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="material-icons me-2 text-md">dashboard</i>
+            Quản Lý Học Sinh
+            <img src="/static/assets/img/down-arrow-white.svg" alt="down-arrow" class="arrow ms-auto ms-md-2">
+          </a>
+          <div class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-md p-3 border-radius-xl mt-0 mt-lg-3"
+            aria-labelledby="dropdownMenuPages">
+            <div class="d-none d-lg-block">
+              <a href="/tiep-nhan" class="dropdown-item border-radius-md">
+                <span>Tiếp nhận học sinh</span>
+              </a>
+              <a href="/dieu-chinh-lop" class="dropdown-item border-radius-md">
+                <span>Điều chỉnh lớp</span>
+              </a>
+              <a href="/xuat-danh-sach-lop" class="dropdown-item border-radius-md">
+                <span>Xuất danh sách lớp</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        {% endif %}
+        <!-- end staff nav -->
+
+        <!-- nav for teacher -->
+        {% if current_user.user_role == UserRole.TEACHER or current_user.user_role == UserRole.ADMIN %}
+        <li class="nav-item dropdown dropdown-hover mx-2">
+          <a class="nav-link ps-2 d-flex cursor-pointer align-items-center font-weight-bold text-capitalize"
+            id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="material-icons me-2 text-md">dashboard</i>
+            Quản Lý Điểm
+            <img src="/static/assets/img/down-arrow-white.svg" alt="down-arrow" class="arrow ms-auto ms-md-2">
+          </a>
+          <div class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-md p-3 border-radius-xl mt-0 mt-lg-3"
+            aria-labelledby="dropdownMenuPages">
+            <div class="d-none d-lg-block">
+              <a href="/tra-cuu-nhap-diem" class="dropdown-item border-radius-md">
+                <span>Nhập điểm</span>
+              </a>
+              <a href="/bang-diem-theo-lop" class="dropdown-item border-radius-md">
+                <span>Bảng điểm môn học theo lớp</span>
+              </a>
+              <a href="/bang-diem-trung-binh-lop" class="dropdown-item border-radius-md">
+                <span>Bảng điểm trung bình lớp</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        {% endif %}
+        <!-- end teacher nav -->
+
+        {% endif %}
+        <!-- end authenticated nav -->
+
+        {% if current_user.user_role == UserRole.ADMIN %}
+        <li class="nav-item ms-lg-auto">
+          <a class="nav-link nav-link-icon me-2" href="/admin">
+            <i class="fas fa-user-shield"></i>
+            <p class="d-inline text-sm z-index-1 font-weight-bold">Trang ADMIN</p>
+          </a>
+        </li>
+        {% endif %}
+
+        {% if current_user.is_authenticated %}
+        <li class="nav-item dropdown dropdown-hover mx-2">
+          <a class="nav-link nav-link-icon me-2" href="/profile">
+            <i class="fas fa-user-circle me-1"></i>
+            <p class="d-inline text-sm z-index-1 font-weight-bold me-1">
+              {{ current_user.fullname }}
+            </p>
+            <span class="badge bg-gradient-info align-top">{{ current_user.user_role }}</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-md p-3 border-radius-xl mt-0 mt-lg-3"
+            aria-labelledby="dropdownMenuPages">
+            <div class="d-none d-lg-block">
+              <a href="/profile" class="dropdown-item border-radius-md">
+                <span>Chỉnh sửa thông tin hồ sơ</span>
+              </a>
+              <a href="/change-password" class="dropdown-item border-radius-md">
+                <span>Đổi mật khẩu</span>
+              </a>
+            </div>
+          </div>
+        </li>
+        {% endif %}
+
+        {% if current_user.is_authenticated %}
+        <li class="nav-item ms-lg-auto">
+          <a class="nav-link nav-link-icon me-2" href="{{ url_for('logout') }}">
+            <i class="fa fa-sign-out me-1"></i>
+            <p class="d-inline text-sm z-index-1 font-weight-bold text-capitalize">Đăng xuất</p>
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- End Navbar -->

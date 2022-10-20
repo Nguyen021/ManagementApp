@@ -1,0 +1,264 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Tra Cứu Nhập Điểm {% endblock %}
+
+{% block body_class %} index-page {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+{% include 'includes/navigation-transparent.html' %}
+
+<div class="page-header min-vh-80"
+  style="background-image: url('https://images.pexels.com/photos/258353/pexels-photo-258353.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')">
+  <span class="mask bg-gradient-dark opacity-6"></span>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <div class="text-center">
+          <h1 class="text-white text-uppercase user-select-none">hệ thống quản lý học sinh</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
+  <div class="container">
+    <div class="section text-center">
+      <h2 class="title user-select-none" style="margin-top: 30px;">
+        TRUY VẤN THÔNG TIN HỌC SINH <br> ĐỂ NHẬP ĐIỂM
+      </h2>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
+        <form method="get" action="{{ url_for('nhap_diem') }}">
+          <div class="card-body">
+            <div class="row">
+
+              <div class="row mt-3">
+                <div class="input-group input-group-static">
+                  <label>Mã số học sinh</label>
+                  <input class="form-control" placeholder="Nhập mã số học sinh" name="student_id"
+                    onkeypress="validate(event)" type="text">
+                </div>
+              </div>
+
+              <!-- danh sach mon hoc -->
+              <div class="row mt-3">
+                <div class="col-8">
+                  <div class="input-group input-group-static">
+                    <label>Tên môn học</label>
+                    <select class="form-control form-select" name="subject_id" aria-label="Default select example"
+                      required>
+                      {% for subject in subjects %}
+                      <option value="{{ subject.subject_id }}" {% if (subject.subject_id == subject_id) %}
+                        selected="selected" {% endif %}>
+                        {{ subject.name }}
+                      </option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-4 d-flex">
+                  <button type="button" class="btn btn-outline-info w-100 mx-auto my-auto" data-bs-toggle="modal"
+                    tabindex="-1" data-bs-target="#exampleModal2">
+                    <i class="fas fa-list-ul me-2" aria-hidden="true"></i>
+                    Danh sách môn
+                  </button>
+
+                  <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header mx-auto mt-3">
+                          <h5 class="modal-title" id="exampleModalLabel2">Danh sách môn học
+                          </h5>
+                        </div>
+                        <div class="modal-body py-0" style="margin: 0 auto">
+                          <table class="table">
+                            <thead class="text-left">
+                              <tr>
+                                <th class="px-5" scope="col">Mã môn</th=>
+                                <th class="px-5" scope="col">Tên môn</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for subject in subjects %}
+                              <tr>
+                                <td class="ps-6" scope="row">{{ subject.subject_id }}
+                                </td>
+                                <td class="px-5">{{ subject.name }}</td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                          <button type="button" class="btn btn-light my-1 mx-auto w-25"
+                            data-bs-dismiss="modal">Đóng</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- danh sach ki hoc -->
+              <div class="row mt-3">
+                <div class="col-8">
+                  <div class="input-group input-group-static">
+                    <label>Học kì</label>
+                    <select class="form-control form-select" name="semester_id" aria-label="Default select example"
+                      required>
+                      {% for sem in semesters %}
+                      <option value="{{ sem.id }}" {% if sem.id == semester_id %} selected {% endif %}>
+                        {{ sem }}
+                      </option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-4 d-flex">
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-outline-info w-100 mx-auto my-auto" data-bs-toggle="modal"
+                    tabindex="-1" data-bs-target="#exampleModal1">
+                    <i class="fas fa-list-ul me-2" aria-hidden="true"></i>
+                    Danh sách học kì
+                  </button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header mx-auto mt-3">
+                          <h5 class="modal-title" id="exampleModalLabel1">Danh sách học kì
+                          </h5>
+                        </div>
+                        <div class="modal-body py-0" style="margin: 0 auto">
+                          <table class="table">
+                            <thead class="text-left">
+                              <tr>
+                                <th scope="col">Mã học kì</th>
+                                <th class="ps-5" scope="col">Tên học kì</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for semester in semesters %}
+                              <tr>
+                                <td class="ps-5" scope="row">{{ semester.id }}</td>
+                                <td class="ps-5">{{ semester }}</td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                          <button type="button" class="btn btn-light my-1 mx-auto w-25"
+                            data-bs-dismiss="modal">Đóng</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-12 text-center mt-5 mb-3">
+                {% if msg %}
+                <div class="alert alert-success text-white text-center font-weight-bold" role="alert">
+                  {{ msg }}
+                </div>
+                {% endif %}
+                <button type="submit" class="btn btn-primary w-20 me-1 mb-0">Truy vấn</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row mx-0 my-0 w-100" style="background-color: rgb(120, 191, 233)">
+      <div class="col text-center">
+        <h3 class="mb-0 d-flex justify-content-center align-items-center" style="height: 60px;">
+          DANH SÁCH HỌC SINH
+        </h3>
+      </div>
+    </div>
+    <div class="table-responsive" style="overflow-x: hidden">
+      <table class="table table-striped table-bordered">
+        <thead class="thead-light">
+          <tr class="table-info">
+            <th class="text-center w-3">MSHS</th>
+            <th class="text-center w-20">Họ và tên</th>
+            <th class="text-center">Email</th>
+            <th class="text-center">Số điện thoại</th>
+            <th class="text-center">Địa chỉ</th>
+            <th class="text-center">Ngày sinh</th>
+            <th class="text-center">Lớp</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in students %}
+          <tr>
+            <td class="text-center">{{ s.id }}</td>
+            <td class="ps-5">{{ s.fullname }}</td>
+            <td class="ps-5">{{ s.email }}</td>
+            <td class="text-center">{{ s.phone }}</td>
+            <td class="text-center">{{ s.address }}</td>
+            <td class="text-center">{{ s.dob.strftime('%d-%m-%Y') }}</td>
+            <td class="text-center">{{ s.class }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="row text-center py-2">
+        <div class="col-4 mx-auto">
+          <ul class="pagination pagination-primary m-4 d-flex justify-content-center">
+            {% for idx in range(1, page + 1) %}
+            <li class="page-item {% if current_page == idx %} active {% endif %}">
+              <a class="page-link" href="{{ url_for('tra_cuu_nhap_diem', page = idx) }}">{{ idx }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+  if (document.querySelector(".datepicker")) {
+    flatpickr(".datepicker", {});
+  }
+
+  function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("th");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+</script>
+{% endblock javascripts %}

@@ -1,0 +1,326 @@
+<!--
+=========================================================
+* Material Kit 2 - v3.0.0
+=========================================================
+
+* Product Page:  https://www.creative-tim.com/product/material-kit 
+* Copyright 2021 Creative Tim (https://www.creative-tim.com)
+* Coded by www.creative-tim.com
+
+ =========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+<!DOCTYPE html>
+<html lang="vi" itemscope itemtype="http://schema.org/WebPage">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="/static/assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="/static/assets/img/favicon.png">
+  <title>
+    Quản Lý Học Sinh - Trang chủ
+  </title>
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <!-- Nucleo Icons -->
+  <link href="/static/assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="/static/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- CSS Files -->
+  <link id="pagestyle" href="/static/assets/css/material-kit.css?v=3.0.0" rel="stylesheet" />
+</head>
+
+<body class="index-page bg-gray-200">
+
+  {% include 'includes/navigation.html' %}
+
+  <header class="header-2">
+    <div class="page-header min-vh-75 relative"
+      style="background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')">
+      <span class="mask bg-gradient-dark opacity-5"></span>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7 text-center mx-auto">
+            <h1 class="text-white pt-3 mt-n5 text-uppercase user-select-none">hệ thống quản lý học sinh</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+    <section class="pt-3 pb-4" id="count-stats">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9 mx-auto py-3">
+            <div class="row">
+              <div class="col-md-4 position-relative">
+                <div class="p-3 text-center">
+                  <h1 class="text-gradient text-info" id="state1" countTo="{{ staff_counter }}">0</h1>
+                  <h5 class="text-capitalize mt-3">Nhân viên</h5>
+                  <p class="text-sm font-weight-normal">
+                    Những người nhiệt huyết và sự tận tâm của họ với
+                    công việc là điều làm nên sự <br> thành công của trường
+                  </p>
+                </div>
+                <hr class="vertical dark">
+              </div>
+              <div class="col-md-4">
+                <div class="p-3 text-center">
+                  <h1 class="text-gradient text-info" id="state2" countTo="{{ teacher_counter }}">0</h1>
+                  <h5 class="text-capitalize mt-3">Giáo viên</h5>
+                  <p class="text-sm font-weight-normal">
+                    Đội ngũ giáo viên là một nhân tố quan trọng trong việc tạo nên
+                    sự thành công trong chất lượng đào tạo của trường
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-4 position-relative">
+                <div class="p-3 text-center">
+                  <h1 class="text-gradient text-info" id="state3" countTo="{{ student_counter }}">0</h1>
+                  <h5 class="text-capitalize mt-3">Học sinh</h5>
+                  <p class="text-sm font-weight-normal">
+                    Coi trọng sự tiến bộ của học sinh trong học tập và rèn luyện, động viên khuyến khích không gây áp
+                    lực cho học sinh khi đánh giá
+                  </p>
+                </div>
+                <hr class="vertical dark">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------- START Content Presentation Docs ------- -->
+    <div class="container">
+      <div class="page-header py-6 py-md-5 my-sm-3 mb-3 border-radius-xl"
+        style="background-image: url('https://images.unsplash.com/photo-1592066575517-58df903152f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1598&q=80');"
+        loading="lazy">
+        <span class="mask bg-gradient-dark"></span>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 ms-lg-5">
+              <h3 class="text-white user-select-none">Chào mừng đến với</h3>
+              <h1 class="text-white user-select-none">Trường THPT Ea Súp</h1>
+              <p class="lead text-white opacity-8 user-select-none">
+                Tiền thân là trường phổ thông trung học Ea Súp được thành lập ngày 9 tháng 8 năm 1986
+                của UBND Tỉnh Đắk Lắk, trường có quy mô giáo dục từ 1000 đến 1200 học sinh.
+              </p>
+              <a href="/about-us" class="text-white icon-move-right" target="_blank">
+                Giới thiêu về chúng tôi
+                <i class="fas fa-arrow-right text-sm ms-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% if current_user.user_role == UserRole.STAFF or current_user.user_role == UserRole.ADMIN %}
+    <div class="container mb-4">
+      <div class="row">
+        <h2 class="mb-5 text-center user-select-none" style="margin-top: 25px">TIỆN ÍCH DÀNH CHO NHÂN VIÊN</h2>
+
+        <!-- nhap diem -->
+        <div class="col-lg-4">
+          <div class="info-horizontal bg-light border-radius-xl d-block d-md-flex p-4">
+            <div class="ps-0 ps-md-3 mt-3 mt-md-0">
+              <h5>
+                <span>
+                  <i class="fas fa-pen me-1 text-gradient text-info"></i>
+                </span>
+                Tiếp nhận học sinh
+              </h5>
+              <p class="mb-2">
+                Nhân viên của trường thực hiện tiếp nhận học sinh theo biểu mẫu
+              </p>
+              <a href="/tiep-nhan" class="text-info icon-move-right">
+                Đi đến tiện ích
+                <i class="fas fa-arrow-right text-sm ms-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- xuat bang diem mon hoc theo lop -->
+        <div class="col-lg-4 mt-lg-0 mt-4">
+          <div class="info-horizontal bg-light border-radius-xl d-block d-md-flex p-4">
+            <div class="ps-0 ps-md-3 mt-3 mt-md-0">
+              <h5>
+                <span>
+                  <i class="fas fa-exchange-alt me-1 text-gradient text-info"></i>
+                </span>
+                Điều chỉnh lớp học sinh
+              </h5>
+              <p>
+                Nhân viên của trường có thể điều chỉnh lớp
+                của học sinh khi cần thiết
+              </p>
+              <a href="/dieu-chinh-lop" class="text-info icon-move-right">
+                Đi đến tiện ích
+                <i class="fas fa-arrow-right text-sm ms-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- danh sach lop -->
+        <div class="col-lg-4 px-lg-1 mt-lg-0 mt-4">
+          <div class="info-horizontal bg-light border-radius-xl d-block d-md-flex p-4 h-100">
+            <div class="ps-0 ps-md-3 mt-3 mt-md-0">
+              <h5>
+                <span>
+                  <i class="fas fa-file-export me-1 text-gradient text-info"></i>
+                </span>
+                Xuất danh sách lớp
+              </h5>
+              <p>
+                Nhân viên có thể xuất danh sách tất cả học sinh có trong một lớp
+              </p>
+              <a href="/xuat-danh-sach-lop" class="text-info icon-move-right">
+                Đi đến tiện ích
+                <i class="fas fa-arrow-right text-sm ms-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {% if current_user.user_role == UserRole.TEACHER or current_user.user_role == UserRole.ADMIN %}
+    <div class="container mb-4">
+      <div class="row">
+        <h2 class="mb-5 text-center user-select-none" style="margin-top: 25px">TIỆN ÍCH DÀNH CHO GIÁO VIÊN</h2>
+
+        <!-- nhap diem -->
+        <div class="col-lg-4">
+          <div class="info-horizontal bg-light border-radius-xl d-block d-md-flex p-4">
+            <div class="ps-0 ps-md-3 mt-3 mt-md-0">
+              <h5>
+                <span>
+                  <i class="fas fa-pen me-1 text-gradient text-info"></i>
+                </span>
+                Nhập điểm
+              </h5>
+              <p class="mb-2">
+                Giáo viên được phép nhập điểm từng môn cho các học sinh của một lớp nào đó.
+              </p>
+              <a href="/tra-cuu-nhap-diem" class="text-info icon-move-right">
+                Đi đến tiện ích
+                <i class="fas fa-arrow-right text-sm ms-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- xuat bang diem mon hoc theo lop -->
+        <div class="col-lg-4 mt-lg-0 mt-4">
+          <div class="info-horizontal bg-light border-radius-xl d-block d-md-flex p-4">
+            <div class="ps-0 ps-md-3 mt-3 mt-md-0">
+              <h5>
+                <span>
+                  <i class="fas fa-school me-1 text-gradient text-info"></i>
+                </span>
+                Bảng điểm môn học của lớp
+              </h5>
+              <p>
+                Giáo viên được phép xuất bảng điểm môn học của lớp
+              </p>
+              <a href="/bang-diem-theo-lop" class="text-info icon-move-right">
+                Đi đến tiện ích
+                <i class="fas fa-arrow-right text-sm ms-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- xuat bang diem theo mon -->
+        <div class="col-lg-4 px-lg-1 mt-lg-0 mt-4">
+          <div class="info-horizontal bg-light border-radius-xl d-block d-md-flex p-4 h-100">
+            <div class="ps-0 ps-md-3 mt-3 mt-md-0">
+              <h5>
+                <span>
+                  <i class="fas fa-book me-1 text-gradient text-info"></i>
+                </span>
+                Bảng điểm theo môn
+              </h5>
+              <p>
+                Giáo viên được phép xuất điểm trung bình một môn của lớp theo năm học
+              </p>
+              <a href="/bang-diem-trung-binh-lop" class="text-info icon-move-right">
+                Đi đến tiện ích
+                <i class="fas fa-arrow-right text-sm ms-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    <!-- -------- END Content Presentation Docs ------- -->
+
+    <section class="pt-5 pb-5">
+      <div class="container d-flex align-items-center">
+        <hr class="horizontal dark my-5">
+        <div class="row">
+          <div class="col-lg-2 col-md-4 col-6 ms-auto">
+            <img class="w-100 opacity-9" src="/static/assets/img/social-media/facebook.svg" alt="Logo">
+          </div>
+          <div class="col-lg-2 col-md-4 col-6">
+            <img class="w-100 opacity-9" src="/static/assets/img/social-media/instagram.svg" alt="Logo">
+          </div>
+          <div class="col-lg-2 col-md-4 col-6">
+            <img class="w-100 opacity-9" src="/static/assets/img/social-media/youtube.svg" alt="Logo">
+          </div>
+          <div class="col-lg-2 col-md-4 col-6 ms-lg-0 ms-md-auto">
+            <img class="w-100 opacity-9" src="/static/assets/img/social-media/github.svg" alt="Logo">
+          </div>
+          <div class="col-lg-2 col-md-4 col-6 me-md-auto mx-md-0 mx-auto">
+            <img class="w-100 opacity-9" src="/static/assets/img/social-media/linkedIn.svg" alt="Logo">
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  {% include 'includes/footer.html' %}
+
+  {% include 'includes/scripts.html' %}
+
+  <script type="text/javascript">
+    if (document.getElementById('state1')) {
+      const countUp = new CountUp('state1', document.getElementById("state1").getAttribute("countTo"));
+      if (!countUp.error) {
+        countUp.start();
+      } else {
+        console.error(countUp.error);
+      }
+    }
+    if (document.getElementById('state2')) {
+      const countUp1 = new CountUp('state2', document.getElementById("state2").getAttribute("countTo"));
+      if (!countUp1.error) {
+        countUp1.start();
+      } else {
+        console.error(countUp1.error);
+      }
+    }
+    if (document.getElementById('state3')) {
+      const countUp2 = new CountUp('state3', document.getElementById("state3").getAttribute("countTo"));
+      if (!countUp2.error) {
+        countUp2.start();
+      } else {
+        console.error(countUp2.error);
+      };
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,238 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Nhập Điểm {% endblock %}
+
+{% block body_class %} index-page {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+{% include 'includes/navigation-transparent.html' %}
+
+<div class="page-header min-vh-80"
+    style="background-image: url('https://images.pexels.com/photos/258353/pexels-photo-258353.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')">
+    <span class="mask bg-gradient-dark opacity-6"></span>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="text-center">
+                    <h1 class="text-white text-uppercase user-select-none">hệ thống quản lý học sinh</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
+    <div class="container">
+        <div class="section text-center">
+            <h2 class="title user-select-none" style="margin-top: 30px;">NHẬP ĐIỂM</h2>
+            <div class="return-search d-flex justify-content-end" style="height: 0 !important;">
+                <form action="/tra-cuu-nhap-diem">
+                    <button class="btn bg-gradient-info btn-icon" type="submit">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-undo me-2" aria-hidden="true"></i>
+                            Trở lại truy vấn
+                        </div>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+        {% if student and subject and semester %}
+        <div class="row d-flex justify-content-center mt-5">
+            <div class="col-lg-9 mx-auto">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-4">
+                        <div class="p-3 text-center">
+                            <i class="fas fa-user-graduate text-gradient text-info text-3xl mb-2"></i>
+                            <h4 class="mb-0">Học sinh</h4>
+                            <h5 class="mb-0 font-weight-normal">[{{ student.id }}] {{ student.fullname }}</h5>
+                        </div>
+                        <hr class="vertical dark">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 text-center">
+                            <i class="fas fa-book text-gradient text-info text-3xl mb-2"></i>
+                            <h4 class="mb-0">Môn học</h4>
+                            <h5 class="mb-0 font-weight-normal">[{{ subject.subject_id }}] {{ subject.name }}</h5>
+                        </div>
+                        <hr class="vertical dark">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 text-center">
+                            <i class="fas fa-school text-gradient text-info text-3xl mb-2"></i>
+                            <h4 class="mb-0">Học kì</h4>
+                            <h5 class="mb-0 font-weight-normal">{{ semester }}</h5>
+                        </div>
+                        <hr class="vertical dark">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
+                <form role="form" method="post" action="{{ url_for('nhap_diem') }}">
+                    <div class="card-body pt-0">
+                        <div class="row">
+                            <div class="hiden" style="display: none;">
+                                <div class="mb-4">
+                                    <div class="input-group input-group-dynamic">
+                                        <input class="form-control" name="student_id" type="text"
+                                            value="{{ student.id }}">
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <div class="input-group input-group-dynamic">
+                                        <input class="form-control" name="subject_id" type="text"
+                                            value="{{ subject.subject_id }}">
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <div class="input-group input-group-dynamic">
+                                        <input class="form-control" name="semester_id" type="text"
+                                            value="{{ semester.id }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col w-40 mt-5">
+                                <div class="mb-4 d-flex justify-content-center">
+                                    <div class="input-group input-group-static w-70">
+                                        <label class="ps-1">Điểm 15 phút lần 1</label>
+                                        <input class="form-control ps-1" step=0.001 min="0" max="10"
+                                            placeholder="Nhập điểm..." name="mark15_1" type="number"
+                                            value="{{ mark.mark15_1 if mark and mark.mark15_1 >= 0 }}">
+                                    </div>
+                                </div>
+
+                                <div class="mb-4 d-flex justify-content-center">
+                                    <div class="input-group input-group-static w-70">
+                                        <label class="ps-1">Điểm 15 phút lần 2</label>
+                                        <input class="form-control ps-1" step=0.001 min="0" max="10"
+                                            placeholder="Nhập điểm..." name="mark15_2" type="number"
+                                            value="{{ mark.mark15_2 if mark and mark.mark15_2 >= 0 }}">
+                                    </div>
+                                </div>
+
+                                <div class="mb-4 d-flex justify-content-center">
+                                    <div class="input-group input-group-static w-70">
+                                        <label class="ps-1">Điểm 15 phút lần 3</label>
+                                        <input class="form-control ps-1" step=0.001 min="0" max="10"
+                                            placeholder="Nhập điểm..." name="mark15_3" type="number"
+                                            value="{{ mark.mark15_3 if mark and mark.mark15_3 >= 0 }}">
+                                    </div>
+                                </div>
+
+                                <div class="mb-4 d-flex justify-content-center">
+                                    <div class="input-group input-group-static w-70">
+                                        <label class="ps-1">Điểm 15 phút lần 4</label>
+                                        <input class="form-control ps-1" step=0.001 min="0" max="10"
+                                            placeholder="Nhập điểm..." name="mark15_4" type="number"
+                                            value="{{ mark.mark15_4 if mark and mark.mark15_4 >= 0 }}">
+                                    </div>
+                                </div>
+
+                                <div class="mb-4 d-flex justify-content-center">
+                                    <div class="input-group input-group-static w-70">
+                                        <label class="ps-1">Điểm 15 phút lần 5</label>
+                                        <input class="form-control ps-1" step=0.001 min="0" max="10"
+                                            placeholder="Nhập điểm..." name="mark15_5" type="number"
+                                            value="{{ mark.mark15_5 if mark and mark.mark15_5 >= 0 }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col w-40 mt-5">
+                                <div class="mb-4 d-flex justify-content-center">
+                                    <div class="input-group input-group-static w-70">
+                                        <label class="ps-1">Điểm 45 phút lần 1</label>
+                                        <input class="form-control ps-1" step=0.001 min="0" max="10"
+                                            placeholder="Nhập điểm..." name="mark45_1" type="number"
+                                            value="{{ mark.mark45_1 if mark and mark.mark45_1 >= 0 }}">
+                                    </div>
+                                </div>
+
+                                <div class="mb-4 d-flex justify-content-center">
+                                    <div class="input-group input-group-static w-70">
+                                        <label class="ps-1">Điểm 45 phút lần 2</label>
+                                        <input class="form-control ps-1" step=0.001 min="0" max="10"
+                                            placeholder="Nhập điểm..." name="mark45_2" type="number"
+                                            value="{{ mark.mark45_2 if mark and mark.mark45_2 >= 0 }}">
+                                    </div>
+                                </div>
+
+                                <div class="mb-4 d-flex justify-content-center">
+                                    <div class="input-group input-group-static w-70">
+                                        <label class="ps-1">Điểm 45 phút lần 3</label>
+                                        <input class="form-control ps-1" step=0.001 min="0" max="10"
+                                            placeholder="Nhập điểm..." name="mark45_3" type="number"
+                                            value="{{ mark.mark45_3 if mark and mark.mark45_3 >= 0 }}">
+                                    </div>
+                                </div>
+
+                                <div class="mb-4 d-flex justify-content-center">
+                                    <div class="input-group input-group-static w-70">
+                                        <label class="ps-1">Điểm cuối kì</label>
+                                        <input class="form-control ps-1" step=0.001 min="0" max="10"
+                                            placeholder="Nhập điểm..." name="final" type="number"
+                                            value="{{ mark.final if mark and mark.final >= 0 }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 text-center my-3">
+                                {% if msg %}
+                                <div class="alert alert-success text-white text-center font-weight-bold" role="alert">
+                                    {{msg}}
+                                </div>
+                                {% endif %}
+                                <button type="submit" class="btn btn-primary w-20 me-1 mb-0">Lưu điểm</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% else %}
+        <div class="row d-flex justify-content-center">
+            <div class="alert alert-primary text-white text-center font-weight-bold w-60 mt-7" role="alert">
+                Đã xảy ra lỗi, có thể mã số học sinh mà bạn vừa nhập không tồn tại trong hệ thống
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+    if (document.querySelector(".datepicker")) {
+        flatpickr(".datepicker", {});
+    }
+
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("th");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+{% endblock javascripts %}

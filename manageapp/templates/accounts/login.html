@@ -1,0 +1,92 @@
+{% extends "layouts/base-fullscreen.html" %}
+
+{% block title %} Đăng nhập {% endblock %}
+
+{% block body_class %} sign-in-basic {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+<style>
+  .form-switch .form-check-input:checked {
+    background-color: #3993ee;
+  }
+
+  .form-switch .form-check-input:checked:after {
+    border-color: #3993ee;
+  }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+
+{% include 'includes/navigation-transparent.html' %}
+
+<div class="page-header align-items-start min-vh-100"
+  style="background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');"
+  loading="lazy">
+  <span class="mask bg-gradient-dark opacity-6"></span>
+  <div class="container my-auto">
+    <div class="row">
+      <div class="col-lg-4 col-md-8 col-12 mx-auto">
+        <div class="card z-index-0 fadeIn3 fadeInBottom">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-info shadow-info border-radius-lg py-3 pe-1">
+              <h3 class="text-white font-weight-bolder text-center mt-2 mb-0" style="user-select: none;">
+                ĐĂNG NHẬP
+              </h3>
+              <h6 class="text-white text-center text-uppercase mb-0 mt-3" style="user-select: none;">
+                tài khoản do nhà trường cấp
+              </h6>
+            </div>
+          </div>
+          <div class="card-body pb-2">
+            <form role="form" method="post" action="{{ url_for('user_login') }}" class="text-start">
+              {{ form.hidden_tag() }}
+              <div class="input-group input-group-outline mb-3">
+                {{ form.username(class="form-control", placeholder="Tên đăng nhập") }}
+              </div>
+              <div class="input-group input-group-outline mb-3">
+                {{ form.password(class="form-control", id="pwd-field", placeholder="Mật khẩu") }}
+              </div>
+              <div class="form-check form-switch p-0 d-flex justify-content-start align-items-center">
+                <input class="form-check-input m-0 ms-1" type="checkbox" id="flexSwitchCheckDefault"
+                  onclick="showPassword()">
+                <label class="form-check-label m-0 ms-3" for="flexSwitchCheckDefault" style="user-select: none;">
+                  Hiện mật khẩu
+                </label>
+              </div>
+              {% if msg %}
+              <div class="alert alert-warning text-white text-center font-weight-bold mt-3" style="margin: 0;"
+                role="alert">
+                {{ msg }}
+              </div>
+              {% endif %}
+              <div class="text-center">
+                <button type="submit" name="login" class="btn bg-gradient-info w-100 mt-3">Đăng nhập</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% include 'includes/footer-auth.html' %}
+
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+  function showPassword() {
+    var x = document.getElementById("pwd-field");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+</script>
+{% endblock javascripts %}
